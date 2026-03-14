@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+profiles.yml
+.vscode
+/logs
+# Ignore dbt packages
+dbt_packages/
+# Ignore dbt artifacts
+target/
+
