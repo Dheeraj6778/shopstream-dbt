@@ -6,7 +6,7 @@ sources:
     schema: raw
 
     freshness:
-      warn_after:  {count: 6, period: hour}
+      warn_after: {count: 6, period: hour}
       error_after: {count: 24, period: hour}
 
     tables:
@@ -15,7 +15,9 @@ sources:
         description: "Raw orders from transactional DB CDC"
         columns:
           - name: order_id
-            tests: [not_null, unique]
+            tests:
+              - not_null
+              - unique
           - name: status
             tests:
               - accepted_values:
@@ -26,38 +28,53 @@ sources:
         description: "Raw customers from transactional DB CDC"
         columns:
           - name: customer_id
-            tests: [not_null, unique]
-
+            tests:
+              - not_null
+              - unique
+              - not_null_proportion:
+                  threshold: 0.95
 
       - name: order_items
         loaded_at_field: created_at
         description: "Raw order items from transactional DB CDC"
         columns:
           - name: order_item_id
-            tests: [not_null, unique]
+            tests:
+              - not_null
+              - unique
           - name: order_id
-            tests: [not_null]
+            tests:
+              - not_null
           - name: product_id
-            tests: [not_null]
+            tests:
+              - not_null
           - name: unit_price
-            tests: [not_null]
+            tests:
+              - not_null
 
       - name: products
         loaded_at_field: updated_at
         description: "Raw products from transactional DB CDC"
         columns:
           - name: product_id
-            tests: [not_null, unique]
+            tests:
+              - not_null
+              - unique
           - name: price
-            tests: [not_null]
+            tests:
+              - not_null
 
       - name: events
         loaded_at_field: event_at
         description: "Raw events from event tracking system"
         columns:
           - name: event_id
-            tests: [not_null, unique]
+            tests:
+              - not_null
+              - unique
           - name: event_type
-            tests: [not_null]
+            tests:
+              - not_null
           - name: event_at
-            tests: [not_null]
+            tests:
+              - not_null
