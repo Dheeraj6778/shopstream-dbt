@@ -27,6 +27,15 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+seeds:
+  shopstream_dbt:
+    +schema: seeds
+    country_codes:
+      +column_types:
+        country_code: varchar(2)
+        country_name: varchar(100)
+        region:       varchar(50)
+
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models

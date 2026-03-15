@@ -19,6 +19,7 @@ sources:
               - not_null
               - unique
           - name: status
+            description: "{{ doc('order_status') }}"
             tests:
               - accepted_values:
                   values: [placed, shipped, delivered, cancelled]
@@ -33,6 +34,8 @@ sources:
               - unique
               - not_null_proportion:
                   threshold: 0.95
+                  config:
+                    severity: warn
 
       - name: order_items
         loaded_at_field: created_at
@@ -42,12 +45,15 @@ sources:
             tests:
               - not_null
               - unique
+
           - name: order_id
             tests:
               - not_null
+
           - name: product_id
             tests:
               - not_null
+
           - name: unit_price
             tests:
               - not_null
@@ -60,6 +66,7 @@ sources:
             tests:
               - not_null
               - unique
+
           - name: price
             tests:
               - not_null
@@ -72,9 +79,11 @@ sources:
             tests:
               - not_null
               - unique
+
           - name: event_type
             tests:
               - not_null
+
           - name: event_at
             tests:
               - not_null

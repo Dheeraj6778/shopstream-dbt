@@ -27,8 +27,5 @@ from {{ ref('stg_orders') }}
 group by order_date
 order by order_date
 
-select distinct order_status
-from {{ ref('stg_orders') }}
-
-select *
-from {{ ref('stg_events') }}
+select distinct country
+from {{ ref('stg_customers') }}
