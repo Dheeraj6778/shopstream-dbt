@@ -6,7 +6,10 @@
 
 {% if execute %}
     {% set results = run_query(categories_query) %}
-    {% set categories = results.columns[0].values() %}
+    {% set categories = dbt_utils.get_column_values(
+    table  = ref('stg_products'),
+    column = 'category'
+) %}
 {% else %}
     {% set categories = [] %}
 {% endif %}

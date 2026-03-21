@@ -29,3 +29,6 @@ order by order_date
 
 select distinct country
 from {{ ref('stg_customers') }}
+
+select *
+from {{ ref('dim_date') }}

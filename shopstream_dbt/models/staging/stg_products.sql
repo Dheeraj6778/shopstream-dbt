@@ -10,7 +10,7 @@ renamed as (
             lower(trim(name)) as product_name,
             lower(trim(category)) as category,
             coalesce(price, 0) as price,
-            boolean(coalesce(is_active, false)) as is_active,
+            coalesce(is_active, false) as is_active,
             created_at as product_created_at,
             updated_at as product_updated_at,
             date(created_at) as product_created_date
